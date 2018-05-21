@@ -5,7 +5,7 @@
 //  Created by Nikolay Kapustin on 16/05/2018.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for CCVSwift.
 FOUNDATION_EXPORT double CCVSwiftVersionNumber;
