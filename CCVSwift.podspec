@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary      = "Shorthand tool for checking banking credit cards.
   This included Luhn algorithm, PAN card format and card detector for the some first digits of cards."
 
-  s.description  = "A payment card number, primary account number (PAN), or simply a card number, is the card identifier found on payment cards, such as credit cards and debit cards, as well as stored-value cards, gift cards and other similar cards."
+  s.description  = "You can quick add credit card validation to your project."
 
   s.homepage     = "https://github.com/GPBDigital/ccvswift"
   s.license      = "MIT"
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
 
-  s.source       = { :git => "https://github.com/GPBDigital/ccvswift", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/GPBDigital/ccvswift.git", :tag => s.version.to_s }
   s.source_files  = "CCVSwift/CCVSwift/*.{h,m,swift,plist}"
   s.public_header_files = "CCVSwift/CCVSwift/CCVSwift.h"
   s.requires_arc = true
