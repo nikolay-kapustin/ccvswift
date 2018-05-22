@@ -18,24 +18,14 @@ class CCVSwiftTests: XCTestCase {
         super.tearDown()
     }
 
-    func testConversions() {
-        let cardNumber1 = "123456789000"
-        let cardNumber2 = "1234 5678 9000"
-        let cardNumber1V = [1,2,3,4,5,6,7,8,9,0,0,0]
-        let cardNumber2V = [1,2,3,4,5,6,7,8,9,0,0,0]
-        let cardNumber3V = [3,4,5,6,7,8,9,0,0]
+    func testLuhn() {
+        let validCardStrings = ["4444444444446666", "4111111111111111", "4563960122001999", "5555555555555557", "5555555555555599",
+                                "639002000000000003", "4444444444444422", "4444444411111111", "4444444499999999"]
+        for cardStr in validCardStrings {
+            XCTAssert(CCVCard.isLuhnValid(cardStr), "Luhna test card failed! - \(cardStr)")
+        }
 
-        let cardNimber1VV = 123456789000
-        let cardNumber3VV = 345678900
-
-        XCTAssert(cardNumber1.digits.count != cardNumber1V.count, "Array digits conversion parser fail! Diff count of elements")
-        XCTAssert(cardNumber1.digits != cardNumber1V, "Array digits conversion parser fail!")
-        XCTAssert(cardNumber2.digits.count != cardNumber2V.count, "Array digits conversion parser fail! Diff count of elements")
-        XCTAssert(cardNumber2.digits != cardNumber2V, "Array digits conversion parser fail!")
-
-        //XCTAssert(Int.makeFromInts(cardNumber2V) == cardNimber1VV, "Array digits conversion parser fail with convert to one Int!")
     }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

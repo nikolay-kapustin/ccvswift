@@ -42,20 +42,16 @@ public struct CCVCard {
         return 9...19
     }
 
-    public static func isLuhnaValid(_ digits: String) -> Bool {
-        return isLuhnaValid(digits.digits)
-    }
-
-    public static func isLuhnaValid(_ digits: [Int]) -> Bool {
-        let isRangeOk = CCVCard.rangeNumberBankingCard.contains(digits.count)
-        guard isRangeOk else {return false}
-        return digits.reversed().enumerated().map { (idx, item) in
-            if idx % 2 == 1 {
-                let doubledValue = item * 2
-                return doubledValue > 9 ? doubledValue - 9 : item
-            }
-            return item
-            }.reduce(0, +) % 10 == 0
+    public static func isLuhnValid(_ digits: String) -> Bool {
+        let sum = digits.compactMap { Int(String($0)) }
+            .reversed()
+            .enumerated()
+            .reduce(0) {
+                let indexIsOdd = $1.0 % 2 == 1
+                guard indexIsOdd else { return $0 + $1.1 }
+                return $0 + ($1.1 == 9 ? 9 : $1.1 * 2 % 9)
+        }
+        return sum % 10 == 0
     }
 
     public static func detectTypeCard(_ digits:String) -> CCVBankigCardType {
@@ -280,23 +276,6 @@ extension Int {
         for digit in reversed {
             result += counter > 0 ? counter * digit : digit
             if counter == 0 {counter = 10} else {counter *= 10}
-        }
-        return result
-    }
-}
-
-extension String {
-
-    var digits:[Int] {
-
-        var result = [Int]()
-        //guard CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: self)) else {return []}
-        let digitCS = CharacterSet.decimalDigits
-        for char in self {
-            let chr = UInt8(Unicode.Scalar(char.unicodeScalars.last!).value)
-            if digitCS.hasMember(inPlane: chr) {
-                result.append(Int(chr))
-            }
         }
         return result
     }
