@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CCVSwift"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Shorthand tool for checking banking credit cards."
 
   s.description  = "You can quick add credit card validation to your project. This included Luhn algorithm, PAN card format and card detector for the some first digits of cards."
