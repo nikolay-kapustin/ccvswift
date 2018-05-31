@@ -57,13 +57,18 @@ public struct CCVCard {
     public static func detectTypeCard(_ digits:String) -> CCVBankigCardType {
         let typeCards = CCVPrefix.codes.keys
         var result:CCVBankigCardType = .unknow
+        var foundedMatches = [(CCVBankigCardType,Int)]()
         for typeCard in typeCards {
             for prefix in CCVPrefix.codes[typeCard]! {
-                if prefix.isMatch(for: digits).0 {
-                    result = typeCard
-                    break
+                let match = prefix.isMatch(for: digits)
+                if match.0 {
+                    foundedMatches.append((typeCard,match.1))
                 }
             }
+        }
+        let foundSort = foundedMatches.sorted { $0.1 > $1.1 }
+        if let mostValidCardType = foundSort.first?.0 {
+            result = mostValidCardType
         }
         return result
     }
@@ -229,7 +234,7 @@ public struct CCVPrefix {
     public func isMatch(for cardNumbers:String) -> (Bool, Int) {
         let normalizedCardNumbers = cardNumbers.prefix(length)
         if let prefixCardNumber = Int(normalizedCardNumbers), range.contains(prefixCardNumber) {
-            return (true, Int.max)
+            return (true, length)
         }
         return (false, Int.max) // the tuple result type reserved for the future (for partial matching numbers of pefixes)
     }

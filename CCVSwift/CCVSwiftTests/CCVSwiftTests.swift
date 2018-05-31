@@ -26,6 +26,20 @@ class CCVSwiftTests: XCTestCase {
         }
 
     }
+    func testCardTypes(){
+        let validCards = [CCVBankigCardType.MasterCard:"5234098390084432",
+                          CCVBankigCardType.Dankort:"5019988087668732",
+                          CCVBankigCardType.Maestro: "5763788390348990",
+                          CCVBankigCardType.Mir: "2203766321873455"
+                          ]
+
+        for (typeCard, cardNum) in validCards {
+            let type = CCVCard.detectTypeCard(cardNum)
+            //print("Card \(typeCard.rawValue) = \(cardNum) is detected as \(type.rawValue)")
+            XCTAssert(type.rawValue == typeCard.rawValue, "Test card type failed for type \(typeCard)")
+        }
+
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
