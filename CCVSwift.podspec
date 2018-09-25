@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CCVSwift"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Shorthand tool for checking banking credit cards."
 
   s.description  = "You can quick add credit card validation to your project. This included Luhn algorithm, PAN card format and card detector for the some first digits of cards."
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = "9.0"
 
   s.source       = { :git => "https://github.com/GPBDigital/ccvswift.git", :tag => s.version.to_s }
-  s.source_files  = "CCVSwift/CCVSwift/*.{h,m,swift,plist}"
+  s.source_files  = "CCVSwift/CCVSwift/*.{h,m,swift}"
   s.requires_arc = true
 
 end
