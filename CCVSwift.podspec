@@ -1,6 +1,5 @@
 
 Pod::Spec.new do |s|
-  s.swift_version = "4.2"
   s.name         = "CCVSwift"
   s.version      = "0.0.4"
   s.summary      = "Shorthand tool for checking banking credit cards."
